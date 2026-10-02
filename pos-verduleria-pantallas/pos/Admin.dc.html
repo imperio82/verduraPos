@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Contabilidad — escritorio</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Figtree:wght@400;500;600;700&display=swap">
+<style>
+body{margin:0;font-family:Figtree,"Segoe UI",system-ui,sans-serif;background:#FBF7EE;color:#1F2A1C}
+a{color:#E8772E}a:hover{color:#B8560F}
+</style>
+</helmet>
+<div style="width: 1440px; height: 900px; display: flex; background: #FBF7EE; color: #1F2A1C; font-family: Figtree, 'Segoe UI', system-ui, sans-serif; overflow: hidden">
+
+<nav aria-label="Principal" style="width: 104px; flex-shrink: 0; background: #FFD8A8; display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 20px 10px; box-sizing: border-box">
+<div style="width: 52px; height: 52px; border-radius: 16px; background: #1F2A1C; color: #FFC83D; display: flex; align-items: center; justify-content: center; font-family: 'Bricolage Grotesque', Georgia, serif; font-weight: 800; font-size: 24px; margin-bottom: 16px">V</div>
+<a href="Main.dc.html" style="width: 84px; padding: 12px 0; border-radius: 14px; color: #6B3A10; text-decoration: none; display: flex; flex-direction: column; align-items: center; gap: 6px; font-size: 13px; font-weight: 600"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 10h14l-1.5 9h-11z"></path><path d="M9 10l3-5 3 5"></path></svg>Vender</a>
+<a href="Cajas.dc.html" style="width: 84px; padding: 12px 0; border-radius: 14px; color: #6B3A10; text-decoration: none; display: flex; flex-direction: column; align-items: center; gap: 6px; font-size: 13px; font-weight: 600"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="11" rx="2"></rect><path d="M8 8V5h8v3"></path><path d="M4 13h16"></path></svg>Cajas</a>
+<a href="Admin.dc.html" style="width: 84px; padding: 12px 0; border-radius: 14px; background: #F28C28; color: #1F2A1C; text-decoration: none; display: flex; flex-direction: column; align-items: center; gap: 6px; font-size: 13px; font-weight: 600"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19V11"></path><path d="M12 19V5"></path><path d="M19 19v-6"></path></svg>Cuentas</a>
+<a href="Inventario.dc.html" style="width: 84px; padding: 12px 0; border-radius: 14px; color: #6B3A10; text-decoration: none; display: flex; flex-direction: column; align-items: center; gap: 6px; font-size: 13px; font-weight: 600"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8l8-4 8 4v8l-8 4-8-4z"></path><path d="M4 8l8 4 8-4"></path><path d="M12 12v8"></path></svg>Inventario</a>
+</nav>
+
+<main style="flex-grow: 1; padding: 28px 32px; box-sizing: border-box; display: flex; flex-direction: column; gap: 20px; min-width: 0">
+<div style="display: flex; align-items: center; gap: 20px">
+<h1 style="margin: 0; font-family: 'Bricolage Grotesque', Georgia, serif; font-size: 34px; font-weight: 800; flex-grow: 1">Contabilidad</h1>
+<div role="group" aria-label="Periodo" style="display: flex; background: #EFE8D6; border-radius: 14px; padding: 4px">
+<button type="button" style="border: 0; border-radius: 10px; padding: 0 18px; height: 42px; background: #FFFFFF; font-family: inherit; font-size: 15px; font-weight: 700; color: #1F2A1C">Hoy</button>
+<button type="button" style="border: 0; border-radius: 10px; padding: 0 18px; height: 42px; background: transparent; font-family: inherit; font-size: 15px; font-weight: 600; color: #4A5443">2 días</button>
+<button type="button" style="border: 0; border-radius: 10px; padding: 0 18px; height: 42px; background: transparent; font-family: inherit; font-size: 15px; font-weight: 600; color: #4A5443">Semana</button>
+<button type="button" style="border: 0; border-radius: 10px; padding: 0 18px; height: 42px; background: transparent; font-family: inherit; font-size: 15px; font-weight: 600; color: #4A5443">Mes</button>
+<button type="button" style="border: 0; border-radius: 10px; padding: 0 18px; height: 42px; background: transparent; font-family: inherit; font-size: 15px; font-weight: 600; color: #4A5443">Elegir fechas</button>
+</div>
+<button type="button" style="height: 50px; padding: 0 22px; border: 0; border-radius: 14px; background: #C2410C; color: #FFFFFF; font-family: inherit; font-size: 16px; font-weight: 700; display: flex; align-items: center; gap: 8px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>Registrar gasto</button>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px">
+<div style="background: #FFFFFF; border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 6px"><span style="font-size: 14px; font-weight: 600; color: #5A6352">Ventas del día</span><span style="font-family: 'Bricolage Grotesque', Georgia, serif; font-size: 32px; font-weight: 800">$1.284.500</span><span style="font-size: 13px; color: #B8560F; font-weight: 700">86 ventas</span></div>
+<div style="background: #FFFFFF; border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 6px"><span style="font-size: 14px; font-weight: 600; color: #5A6352">Gastos del día</span><span style="font-family: 'Bricolage Grotesque', Georgia, serif; font-size: 32px; font-weight: 800; color: #B8560F">$412.000</span><span style="font-size: 13px; color: #5A6352; font-weight: 600">5 pagos</span></div>
+<div style="background: #FFD8A8; color: #1F2A1C; border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 6px"><span style="font-size: 14px; font-weight: 600; color: #6B3A10">Dinero final</span><span style="font-family: 'Bricolage Grotesque', Georgia, serif; font-size: 32px; font-weight: 800; color: #1F2A1C">$872.500</span><span style="font-size: 13px; color: #6B3A10; font-weight: 600">Ventas − gastos</span></div>
+<div style="background: #FFF1C2; border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 6px"><span style="font-size: 14px; font-weight: 600; color: #5A4A12">Ahorrado</span><span style="font-family: 'Bricolage Grotesque', Georgia, serif; font-size: 32px; font-weight: 800">$3.150.000</span><span style="font-size: 13px; color: #5A4A12; font-weight: 600">63 % de la meta</span></div>
+</div>
+
+<div style="display: grid; grid-template-columns: 1.4fr 1fr; gap: 16px; flex-grow: 1; min-height: 0">
+<section style="background: #FFFFFF; border-radius: 20px; padding: 22px; display: flex; flex-direction: column; gap: 10px">
+<h2 style="margin: 0 0 6px; font-size: 20px; font-weight: 800">Gastos y pagos de hoy</h2>
+<sc-for list="{{gastos}}" as="g" hint-placeholder-count="5">
+<div style="display: flex; align-items: center; gap: 14px; padding: 12px 0; border-bottom: 1px solid #EFE8D6">
+<span style="width: 54px; font-size: 14px; color: #5A6352; font-weight: 600">{{g.hora}}</span>
+<span style="flex-grow: 1; font-size: 16px; font-weight: 600">{{g.concepto}}</span>
+<span style="background: {{g.bg}}; color: #1F2A1C; font-size: 13px; font-weight: 700; padding: 6px 12px; border-radius: 999px">{{g.destino}}</span>
+<span style="width: 110px; text-align: right; font-size: 17px; font-weight: 800">{{g.monto}}</span>
+</div>
+</sc-for>
+<div style="display: flex; justify-content: space-between; padding-top: 8px; font-size: 17px; font-weight: 800"><span>Total gastos</span><span>$412.000</span></div>
+</section>
+
+<div style="display: flex; flex-direction: column; gap: 16px; min-height: 0">
+<section style="background: #FFFFFF; border-radius: 20px; padding: 22px; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; justify-content: space-between; align-items: center"><h2 style="margin: 0; font-size: 20px; font-weight: 800">Esta semana</h2><span style="display: flex; gap: 14px; font-size: 13px; font-weight: 600; color: #5A6352"><span style="display: flex; align-items: center; gap: 6px"><span style="width: 12px; height: 12px; border-radius: 3px; background: #E8772E"></span>Ventas</span><span style="display: flex; align-items: center; gap: 6px"><span style="width: 12px; height: 12px; border-radius: 3px; background: #7A4FB0"></span>Gastos</span></span></div>
+<div style="display: flex; align-items: flex-end; justify-content: space-between; height: 140px; gap: 8px">
+<sc-for list="{{semana}}" as="d" hint-placeholder-count="7">
+<div style="display: flex; flex-direction: column; align-items: center; gap: 6px; flex-grow: 1">
+<div style="display: flex; align-items: flex-end; gap: 4px; height: 112px"><div style="width: 16px; height: {{d.v}}px; background: #E8772E; border-radius: 5px 5px 0 0"></div><div style="width: 16px; height: {{d.g}}px; background: #7A4FB0; border-radius: 5px 5px 0 0"></div></div>
+<span style="font-size: 12px; font-weight: 600; color: #5A6352">{{d.dia}}</span>
+</div>
+</sc-for>
+</div>
+</section>
+
+<section style="background: #FFF1C2; border-radius: 20px; padding: 22px; display: flex; flex-direction: column; gap: 12px; flex-grow: 1">
+<div style="display: flex; justify-content: space-between; align-items: center"><h2 style="margin: 0; font-size: 20px; font-weight: 800">Meta: [NOMBRE DE LA META]</h2><button type="button" style="height: 44px; padding: 0 16px; border: 0; border-radius: 12px; background: #1F2A1C; color: #FFFFFF; font-family: inherit; font-weight: 700; font-size: 14px">+ Ahorrar</button></div>
+<div style="font-size: 15px; font-weight: 600">$3.150.000 de $5.000.000</div>
+<div style="height: 14px; background: rgba(31,42,28,0.12); border-radius: 999px"><div style="width: 63%; height: 14px; background: #E8772E; border-radius: 999px"></div></div>
+<sc-for list="{{ahorros}}" as="a" hint-placeholder-count="3">
+<div style="display: flex; justify-content: space-between; font-size: 15px"><span style="color: #5A4A12">{{a.fecha}}</span><span style="font-weight: 800">{{a.monto}}</span></div>
+</sc-for>
+</section>
+</div>
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      gastos: [
+        { hora: '06:10', concepto: 'Compra de producto — [PROVEEDOR]', destino: 'Proveedor', bg: '#DDF1D3', monto: '$280.000' },
+        { hora: '07:30', concepto: 'Flete desde la central', destino: 'Transporte', bg: '#D6E6FA', monto: '$45.000' },
+        { hora: '09:00', concepto: 'Bolsas y empaques', destino: 'Insumos', bg: '#FFE6C7', monto: '$32.000' },
+        { hora: '12:15', concepto: 'Almuerzo empleados', destino: 'Personal', bg: '#EFE0F5', monto: '$30.000' },
+        { hora: '15:40', concepto: 'Recibo de energía', destino: 'Servicios', bg: '#F4E6CF', monto: '$25.000' }
+      ],
+      semana: [
+        { dia: 'Lun', v: 78, g: 34 }, { dia: 'Mar', v: 70, g: 28 }, { dia: 'Mié', v: 84, g: 40 },
+        { dia: 'Jue', v: 66, g: 22 }, { dia: 'Vie', v: 98, g: 46 }, { dia: 'Sáb', v: 112, g: 52 }, { dia: 'Dom', v: 90, g: 30 }
+      ],
+      ahorros: [
+        { fecha: '28 sep', monto: '+ $100.000' },
+        { fecha: '25 sep', monto: '+ $150.000' },
+        { fecha: '21 sep', monto: '+ $200.000' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

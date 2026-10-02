@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Cuentas del día — celular</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Figtree:wght@400;500;600;700&display=swap">
+<style>
+body{margin:0;font-family:Figtree,"Segoe UI",system-ui,sans-serif;background:#FBF7EE;color:#1F2A1C}
+a{color:#E8772E}a:hover{color:#B8560F}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; display: flex; flex-direction: column; background: #FBF7EE; color: #1F2A1C; font-family: Figtree, 'Segoe UI', system-ui, sans-serif; overflow: hidden; position: relative">
+<div style="padding: 18px 16px 0; display: flex; flex-direction: column; gap: 12px; flex-grow: 1; min-height: 0">
+<h1 style="margin: 0; font-family: 'Bricolage Grotesque', Georgia, serif; font-size: 28px; font-weight: 800">Cuentas</h1>
+<div role="group" aria-label="Periodo" style="display: flex; gap: 8px">
+<button type="button" style="height: 40px; padding: 0 16px; border: 0; border-radius: 999px; background: #1F2A1C; color: #FFFFFF; font-family: inherit; font-size: 14px; font-weight: 700">Hoy</button>
+<button type="button" style="height: 40px; padding: 0 14px; border: 0; border-radius: 999px; background: #FFFFFF; color: #1F2A1C; font-family: inherit; font-size: 14px; font-weight: 600">2 días</button>
+<button type="button" style="height: 40px; padding: 0 14px; border: 0; border-radius: 999px; background: #FFFFFF; color: #1F2A1C; font-family: inherit; font-size: 14px; font-weight: 600">Semana</button>
+<button type="button" style="height: 40px; padding: 0 14px; border: 0; border-radius: 999px; background: #FFFFFF; color: #1F2A1C; font-family: inherit; font-size: 14px; font-weight: 600">Mes</button>
+</div>
+<div style="background: #FFD8A8; color: #1F2A1C; border-radius: 22px; padding: 18px; display: flex; flex-direction: column; gap: 10px">
+<span style="font-size: 14px; font-weight: 600; color: #6B3A10">Dinero final de hoy</span>
+<span style="font-family: 'Bricolage Grotesque', Georgia, serif; font-size: 40px; font-weight: 800; color: #1F2A1C; line-height: 1">$872.500</span>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+<div style="background: #FFFFFF; border-radius: 14px; padding: 10px 12px"><div style="font-size: 12px; color: #6B3A10; font-weight: 600">Ventas</div><div style="font-size: 18px; font-weight: 800">$1.284.500</div></div>
+<div style="background: #FFFFFF; border-radius: 14px; padding: 10px 12px"><div style="font-size: 12px; color: #6B3A10; font-weight: 600">Gastos</div><div style="font-size: 18px; font-weight: 800">$412.000</div></div>
+</div>
+</div>
+<h2 style="margin: 4px 0 0; font-size: 18px; font-weight: 800">Gastos de hoy</h2>
+<div style="background: #FFFFFF; border-radius: 18px; padding: 4px 14px">
+<sc-for list="{{gastos}}" as="g" hint-placeholder-count="4">
+<div style="display: flex; align-items: center; gap: 10px; padding: 11px 0; border-bottom: 1px solid #EFE8D6">
+<div style="flex-grow: 1; min-width: 0"><div style="font-size: 15px; font-weight: 700">{{g.concepto}}</div><div style="font-size: 13px; color: #5A6352">{{g.hora}}</div></div>
+<span style="background: {{g.bg}}; font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 999px">{{g.destino}}</span>
+<span style="font-size: 16px; font-weight: 800; width: 84px; text-align: right">{{g.monto}}</span>
+</div>
+</sc-for>
+</div>
+<div style="background: #FFF1C2; border-radius: 18px; padding: 14px; display: flex; flex-direction: column; gap: 8px">
+<div style="display: flex; justify-content: space-between; font-size: 15px"><span style="font-weight: 800">Ahorro: [META]</span><span style="font-weight: 700">63 %</span></div>
+<div style="height: 12px; background: rgba(31,42,28,0.12); border-radius: 999px"><div style="width: 63%; height: 12px; background: #E8772E; border-radius: 999px"></div></div>
+<span style="font-size: 13px; color: #5A4A12; font-weight: 600">$3.150.000 de $5.000.000</span>
+</div>
+</div>
+<button type="button" aria-label="Registrar gasto" style="position: absolute; right: 18px; bottom: 90px; width: 60px; height: 60px; border: 0; border-radius: 20px; background: #FFC83D; color: #1F2A1C; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 16px rgba(31,42,28,0.25)"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></button>
+<nav aria-label="Principal" style="height: 72px; flex-shrink: 0; background: #FFFFFF; border-top: 1px solid #E7E0D0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr))">
+<a href="MovilVenta.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-decoration: none; color: #5A6352; font-size: 12px; font-weight: 600"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 10h14l-1.5 9h-11z"></path><path d="M9 10l3-5 3 5"></path></svg>Vender</a>
+<a href="#cajas" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-decoration: none; color: #5A6352; font-size: 12px; font-weight: 600"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="11" rx="2"></rect><path d="M8 8V5h8v3"></path><path d="M4 13h16"></path></svg>Cajas</a>
+<a href="MovilGastos.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-decoration: none; color: #B8560F; font-size: 12px; font-weight: 800"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19V11"></path><path d="M12 19V5"></path><path d="M19 19v-6"></path></svg>Cuentas</a>
+<a href="MovilRecepcion.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-decoration: none; color: #5A6352; font-size: 12px; font-weight: 600"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8l8-4 8 4v8l-8 4-8-4z"></path><path d="M4 8l8 4 8-4"></path><path d="M12 12v8"></path></svg>Inventario</a>
+</nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      gastos: [
+        { hora: '06:10', concepto: 'Compra proveedor', destino: 'Proveedor', bg: '#DDF1D3', monto: '$280.000' },
+        { hora: '07:30', concepto: 'Flete central', destino: 'Transporte', bg: '#D6E6FA', monto: '$45.000' },
+        { hora: '09:00', concepto: 'Bolsas', destino: 'Insumos', bg: '#FFE6C7', monto: '$32.000' },
+        { hora: '12:15', concepto: 'Almuerzo', destino: 'Personal', bg: '#EFE0F5', monto: '$30.000' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

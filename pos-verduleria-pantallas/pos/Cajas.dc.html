@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Cajas — lista y apertura</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Figtree:wght@400;500;600;700&display=swap">
+<style>
+body{margin:0;font-family:Figtree,"Segoe UI",system-ui,sans-serif;background:#FBF7EE;color:#1F2A1C}
+a{color:#E8772E}a:hover{color:#B8560F}
+</style>
+</helmet>
+<div style="width: 1440px; height: 900px; display: flex; background: #FBF7EE; color: #1F2A1C; font-family: Figtree, 'Segoe UI', system-ui, sans-serif; overflow: hidden">
+
+<nav aria-label="Principal" style="width: 104px; flex-shrink: 0; background: #FFD8A8; display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 20px 10px; box-sizing: border-box">
+<div style="width: 52px; height: 52px; border-radius: 16px; background: #1F2A1C; color: #FFC83D; display: flex; align-items: center; justify-content: center; font-family: 'Bricolage Grotesque', Georgia, serif; font-weight: 800; font-size: 24px; margin-bottom: 16px">V</div>
+<a href="Main.dc.html" style="width: 84px; padding: 12px 0; border-radius: 14px; color: #6B3A10; text-decoration: none; display: flex; flex-direction: column; align-items: center; gap: 6px; font-size: 13px; font-weight: 600"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 10h14l-1.5 9h-11z"></path><path d="M9 10l3-5 3 5"></path></svg>Vender</a>
+<a href="Cajas.dc.html" style="width: 84px; padding: 12px 0; border-radius: 14px; background: #F28C28; color: #1F2A1C; text-decoration: none; display: flex; flex-direction: column; align-items: center; gap: 6px; font-size: 13px; font-weight: 600"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="11" rx="2"></rect><path d="M8 8V5h8v3"></path><path d="M4 13h16"></path></svg>Cajas</a>
+<a href="Admin.dc.html" style="width: 84px; padding: 12px 0; border-radius: 14px; color: #6B3A10; text-decoration: none; display: flex; flex-direction: column; align-items: center; gap: 6px; font-size: 13px; font-weight: 600"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19V11"></path><path d="M12 19V5"></path><path d="M19 19v-6"></path></svg>Cuentas</a>
+<a href="Inventario.dc.html" style="width: 84px; padding: 12px 0; border-radius: 14px; color: #6B3A10; text-decoration: none; display: flex; flex-direction: column; align-items: center; gap: 6px; font-size: 13px; font-weight: 600"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8l8-4 8 4v8l-8 4-8-4z"></path><path d="M4 8l8 4 8-4"></path><path d="M12 12v8"></path></svg>Inventario</a>
+</nav>
+
+<main style="flex-grow: 1; padding: 28px 32px; box-sizing: border-box; display: flex; flex-direction: column; gap: 20px; min-width: 0">
+<div style="display: flex; align-items: center; gap: 20px">
+<h1 style="margin: 0; font-family: 'Bricolage Grotesque', Georgia, serif; font-size: 34px; font-weight: 800; flex-grow: 1">Cajas</h1>
+<div role="group" aria-label="Filtrar cajas" style="display: flex; background: #EFE8D6; border-radius: 14px; padding: 4px">
+<button type="button" style="border: 0; border-radius: 10px; padding: 0 18px; height: 42px; background: #FFFFFF; font-family: inherit; font-size: 15px; font-weight: 700; color: #1F2A1C">Todas</button>
+<button type="button" style="border: 0; border-radius: 10px; padding: 0 18px; height: 42px; background: transparent; font-family: inherit; font-size: 15px; font-weight: 600; color: #4A5443">Abiertas</button>
+<button type="button" style="border: 0; border-radius: 10px; padding: 0 18px; height: 42px; background: transparent; font-family: inherit; font-size: 15px; font-weight: 600; color: #4A5443">Cerradas</button>
+</div>
+<button type="button" style="height: 50px; padding: 0 18px; border-radius: 14px; border: 1.5px solid #E4DCC8; background: #FFFFFF; font-family: inherit; font-size: 15px; font-weight: 700; color: #1F2A1C">Últimos 7 días</button>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px">
+<div style="background: #FFEBD2; border-radius: 20px; padding: 18px 20px; display: flex; flex-direction: column; gap: 4px"><span style="font-size: 14px; font-weight: 600; color: #6B3A10">Cajas abiertas ahora</span><span style="font-family: 'Bricolage Grotesque', Georgia, serif; font-size: 34px; font-weight: 800">2</span></div>
+<div style="background: #FFFFFF; border-radius: 20px; padding: 18px 20px; display: flex; flex-direction: column; gap: 4px"><span style="font-size: 14px; font-weight: 600; color: #5A6352">Efectivo esperado en cajas</span><span style="font-family: 'Bricolage Grotesque', Georgia, serif; font-size: 34px; font-weight: 800">$756.000</span></div>
+<div style="background: #FFFFFF; border-radius: 20px; padding: 18px 20px; display: flex; flex-direction: column; gap: 4px"><span style="font-size: 14px; font-weight: 600; color: #5A6352">Diferencias en cierres (7 días)</span><span style="font-family: 'Bricolage Grotesque', Georgia, serif; font-size: 34px; font-weight: 800; color: #B8560F">−$2.000</span></div>
+</div>
+
+<section style="background: #FFFFFF; border-radius: 20px; padding: 10px 20px 16px; flex-grow: 1; display: flex; flex-direction: column">
+<div style="display: grid; grid-template-columns: 1.5fr 1.2fr 1.2fr 1fr 0.9fr 0.9fr 0.9fr 0.9fr; gap: 12px; padding: 14px 8px; font-size: 13px; font-weight: 700; color: #4A5443; border-bottom: 2px solid #EFE8D6">
+<span>Caja</span><span>Apertura</span><span>Cierre</span><span>Ventas</span><span>Gastos</span><span>Diferencia</span><span>Estado</span><span></span>
+</div>
+<sc-for list="{{cajas}}" as="c" hint-placeholder-count="7">
+<div style="display: grid; grid-template-columns: 1.5fr 1.2fr 1.2fr 1fr 0.9fr 0.9fr 0.9fr 0.9fr; gap: 12px; padding: 12px 8px; align-items: center; font-size: 15px; border-bottom: 1px solid #EFE8D6; background: {{c.rowBg}}">
+<span><span style="font-weight: 800">{{c.caja}}</span><br><span style="font-size: 13px; color: #5A6352">{{c.cajero}}</span></span>
+<span>{{c.abre}}</span>
+<span style="color: #4A5443">{{c.cierra}}</span>
+<span style="font-weight: 700">{{c.ventas}}</span>
+<span>{{c.gastos}}</span>
+<span style="font-weight: 800; color: {{c.difColor}}">{{c.dif}}</span>
+<span><span style="font-size: 13px; font-weight: 800; padding: 5px 12px; border-radius: 999px; background: {{c.stBg}}; color: {{c.stFg}}">{{c.estado}}</span></span>
+<a href="CajaDetalle.dc.html" style="height: 40px; border-radius: 10px; border: 1.5px solid #1F2A1C; color: #1F2A1C; text-decoration: none; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center">{{c.accion}}</a>
+</div>
+</sc-for>
+</section>
+</main>
+
+<aside aria-label="Abrir caja" style="width: 380px; flex-shrink: 0; padding: 28px 28px 28px 0; box-sizing: border-box">
+<section style="background: #FFD8A8; color: #1F2A1C; border-radius: 22px; padding: 24px; height: 100%; box-sizing: border-box; display: flex; flex-direction: column; gap: 16px">
+<h2 style="margin: 0; font-family: 'Bricolage Grotesque', Georgia, serif; font-size: 26px; font-weight: 800; color: #1F2A1C">Abrir caja</h2>
+<span style="font-size: 14px; color: #6B3A10">Cuenta el dinero con el que arrancas el día. Esa es la base de la caja.</span>
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 700; color: #6B3A10">Caja<select style="height: 48px; border-radius: 12px; border: 0; padding: 0 12px; font-family: inherit; font-size: 16px; color: #1F2A1C; background: #FFFFFF"><option>Caja 3</option></select></label>
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 700; color: #6B3A10">Cajero<select style="height: 48px; border-radius: 12px; border: 0; padding: 0 12px; font-family: inherit; font-size: 16px; color: #1F2A1C; background: #FFFFFF"><option>[CAJERO]</option></select></label>
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 700; color: #6B3A10">Base inicial en efectivo<input type="text" value="$200.000" style="height: 64px; border-radius: 14px; border: 0; padding: 0 16px; font-family: 'Bricolage Grotesque', Georgia, serif; font-size: 30px; font-weight: 800; color: #1F2A1C; box-sizing: border-box"></label>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+<button type="button" style="height: 44px; border: 0; border-radius: 12px; background: #FFFFFF; color: #1F2A1C; font-family: inherit; font-size: 14px; font-weight: 700">$100.000</button>
+<button type="button" style="height: 44px; border: 0; border-radius: 12px; background: #FFC83D; color: #1F2A1C; font-family: inherit; font-size: 14px; font-weight: 800">$200.000</button>
+<button type="button" style="height: 44px; border: 0; border-radius: 12px; background: #FFFFFF; color: #1F2A1C; font-family: inherit; font-size: 14px; font-weight: 700">Contar billetes</button>
+</div>
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 700; color: #6B3A10">Nota (opcional)<textarea rows="3" style="border-radius: 12px; border: 0; padding: 10px 12px; font-family: inherit; font-size: 15px; color: #1F2A1C; resize: none">Base igual al cierre de ayer.</textarea></label>
+<button type="button" style="margin-top: auto; height: 62px; border: 0; border-radius: 16px; background: #1F2A1C; color: #FFFFFF; font-family: 'Bricolage Grotesque', Georgia, serif; font-size: 22px; font-weight: 800">Abrir caja</button>
+</section>
+</aside>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  renderVals() {
+    var rows = [
+      { caja: 'Caja 1', cajero: '[CAJERO]', abre: 'Hoy 6:00 a. m.', cierra: '—', ventas: '$1.284.500', gastos: '$412.000', dif: '—', open: true },
+      { caja: 'Caja 2', cajero: '[CAJERO 2]', abre: 'Hoy 7:30 a. m.', cierra: '—', ventas: '$356.000', gastos: '$0', dif: '—', open: true },
+      { caja: 'Caja 1', cajero: '[CAJERO]', abre: '28 sep 6:05 a. m.', cierra: '28 sep 8:10 p. m.', ventas: '$1.410.000', gastos: '$380.000', dif: '$0' },
+      { caja: 'Caja 2', cajero: '[CAJERO 2]', abre: '28 sep 7:40 a. m.', cierra: '28 sep 6:00 p. m.', ventas: '$402.000', gastos: '$25.000', dif: '+$3.000' },
+      { caja: 'Caja 1', cajero: '[CAJERO]', abre: '27 sep 6:00 a. m.', cierra: '27 sep 8:00 p. m.', ventas: '$1.198.000', gastos: '$455.000', dif: '−$5.000' },
+      { caja: 'Caja 1', cajero: '[CAJERO]', abre: '26 sep 6:10 a. m.', cierra: '26 sep 8:05 p. m.', ventas: '$1.322.000', gastos: '$298.000', dif: '$0' }
+    ];
+    return {
+      cajas: rows.map(function (r) {
+        var neg = r.dif.indexOf('−') === 0, pos = r.dif.indexOf('+') === 0;
+        return Object.assign({}, r, {
+          estado: r.open ? 'Abierta' : 'Cerrada',
+          stBg: r.open ? '#F28C28' : '#EFE8D6',
+          stFg: r.open ? '#1F2A1C' : '#1F2A1C',
+          accion: r.open ? 'Entrar' : 'Ver cierre',
+          rowBg: r.open ? '#FFF6EC' : '#FFFFFF',
+          difColor: neg ? '#C0392B' : (pos ? '#1D4ED8' : '#1F2A1C')
+        });
+      })
+    };
+  }
+}
+</script>
+</body>
+</html>

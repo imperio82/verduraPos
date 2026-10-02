@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Revisar pedido que llegó — celular</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Figtree:wght@400;500;600;700&display=swap">
+<style>
+body{margin:0;font-family:Figtree,"Segoe UI",system-ui,sans-serif;background:#FBF7EE;color:#1F2A1C}
+a{color:#E8772E}a:hover{color:#B8560F}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; display: flex; flex-direction: column; gap: 12px; padding: 18px 16px 20px; box-sizing: border-box; background: #FBF7EE; color: #1F2A1C; font-family: Figtree, 'Segoe UI', system-ui, sans-serif; overflow: hidden">
+<div style="display: flex; align-items: center; gap: 12px">
+<a href="MovilVenta.dc.html" aria-label="Volver" style="width: 44px; height: 44px; border-radius: 14px; background: #FFFFFF; display: flex; align-items: center; justify-content: center; color: #1F2A1C; flex-shrink: 0"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"></path></svg></a>
+<div style="display: flex; flex-direction: column">
+<span style="font-family: 'Bricolage Grotesque', Georgia, serif; font-size: 23px; font-weight: 800">Llegó el pedido P-031</span>
+<span style="font-size: 14px; font-weight: 600; color: #5A6352">[PROVEEDOR] · pedido el 26 sep</span>
+</div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+<label style="display: flex; flex-direction: column; gap: 4px; font-size: 12px; font-weight: 700; color: #5A6352">N° factura<input type="text" value="FV-2291" style="height: 46px; border-radius: 12px; border: 1.5px solid #E4DCC8; padding: 0 12px; font-family: inherit; font-size: 16px; color: #1F2A1C; box-sizing: border-box; width: 100%"></label>
+<label style="display: flex; flex-direction: column; gap: 4px; font-size: 12px; font-weight: 700; color: #5A6352">Fecha factura<input type="text" value="29/09/2026" style="height: 46px; border-radius: 12px; border: 1.5px solid #E4DCC8; padding: 0 12px; font-family: inherit; font-size: 16px; color: #1F2A1C; box-sizing: border-box; width: 100%"></label>
+</div>
+<div style="display: flex; justify-content: space-between; font-size: 14px; font-weight: 700"><span>Revisado 3 de 12</span><span style="color: #B8560F">Ver todos</span></div>
+<sc-for list="{{items}}" as="it" hint-placeholder-count="3">
+<div style="background: #FFFFFF; border-radius: 18px; padding: 12px 14px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; align-items: center; gap: 10px">
+<span style="width: 34px; height: 34px; border-radius: 999px; background: {{it.dot}}; flex-shrink: 0"></span>
+<div style="flex-grow: 1"><div style="font-size: 16px; font-weight: 800">{{it.name}}</div><div style="font-size: 13px; color: #5A6352">Pedido: {{it.pedido}}</div></div>
+<label style="display: flex; flex-direction: column; font-size: 11px; font-weight: 700; color: #5A6352">Llegó<input type="text" value="{{it.recibido}}" style="width: 84px; height: 40px; border-radius: 10px; border: 1.5px solid #E4DCC8; padding: 0 8px; font-family: inherit; font-size: 15px; box-sizing: border-box"></label>
+</div>
+<div role="group" aria-label="Estado de {{it.name}}" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px">
+<button type="button" style="height: 44px; border-radius: 12px; border: {{it.okB}}; background: {{it.okBg}}; color: {{it.okFg}}; font-family: inherit; font-size: 14px; font-weight: 700">Bien</button>
+<button type="button" style="height: 44px; border-radius: 12px; border: {{it.faB}}; background: {{it.faBg}}; color: {{it.faFg}}; font-family: inherit; font-size: 14px; font-weight: 700">Faltó</button>
+<button type="button" style="height: 44px; border-radius: 12px; border: {{it.maB}}; background: {{it.maBg}}; color: {{it.maFg}}; font-family: inherit; font-size: 14px; font-weight: 700">Llegó malo</button>
+</div>
+</div>
+</sc-for>
+<label style="display: flex; flex-direction: column; gap: 4px; font-size: 12px; font-weight: 700; color: #5A6352">Nota del pedido<textarea rows="2" style="border-radius: 12px; border: 1.5px solid #E4DCC8; padding: 10px 12px; font-family: inherit; font-size: 15px; color: #1F2A1C; resize: none">Faltaron 5 kg de papa. 2 kg de fresa llegaron golpeadas.</textarea></label>
+<button type="button" style="margin-top: auto; height: 60px; border: 0; border-radius: 18px; background: #C2410C; color: #FFFFFF; font-family: inherit; font-size: 17px; font-weight: 800">Completar y sumar al stock</button>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    var off = { b: '1.5px solid #E4DCC8', bg: '#FFFFFF', fg: '#1F2A1C' };
+    var on = {
+      ok: { b: '0', bg: '#2E7D32', fg: '#FFFFFF' },
+      fa: { b: '0', bg: '#B8560F', fg: '#FFFFFF' },
+      ma: { b: '0', bg: '#C0392B', fg: '#FFFFFF' }
+    };
+    var mk = function (base, sel) {
+      var r = Object.assign({}, base);
+      ['ok', 'fa', 'ma'].forEach(function (k) {
+        var s = sel === k ? on[k] : off;
+        r[k + 'B'] = s.b; r[k + 'Bg'] = s.bg; r[k + 'Fg'] = s.fg;
+      });
+      return r;
+    };
+    return {
+      items: [
+        mk({ name: 'Tomate chonto', pedido: '20 kg', recibido: '20 kg', dot: '#E0442B' }, 'ok'),
+        mk({ name: 'Papa pastusa', pedido: '50 kg', recibido: '45 kg', dot: '#C9A26B' }, 'fa'),
+        mk({ name: 'Fresa', pedido: '5 kg', recibido: '5 kg', dot: '#D93A4A' }, 'ma')
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

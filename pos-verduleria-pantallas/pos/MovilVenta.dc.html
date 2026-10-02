@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Vender — celular</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Figtree:wght@400;500;600;700&display=swap">
+<style>
+body{margin:0;font-family:Figtree,"Segoe UI",system-ui,sans-serif;background:#FBF7EE;color:#1F2A1C}
+a{color:#E8772E}a:hover{color:#B8560F}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; display: flex; flex-direction: column; background: #FBF7EE; color: #1F2A1C; font-family: Figtree, 'Segoe UI', system-ui, sans-serif; overflow: hidden">
+<div style="padding: 18px 16px 0; display: flex; flex-direction: column; gap: 12px; flex-grow: 1; min-height: 0">
+<div style="display: flex; justify-content: space-between; align-items: center">
+<h1 style="margin: 0; font-family: 'Bricolage Grotesque', Georgia, serif; font-size: 28px; font-weight: 800">Vender</h1>
+<div role="group" aria-label="Modo de venta" style="display: flex; background: #EFE8D6; border-radius: 12px; padding: 3px">
+<button type="button" style="border: 0; border-radius: 9px; padding: 0 12px; height: 38px; background: #FFFFFF; font-family: inherit; font-size: 14px; font-weight: 700; color: #1F2A1C">Producto</button>
+<button type="button" style="border: 0; border-radius: 9px; padding: 0 12px; height: 38px; background: transparent; font-family: inherit; font-size: 14px; font-weight: 600; color: #4A5443">Total</button>
+</div>
+</div>
+<label style="display: flex; align-items: center; gap: 10px; background: #FFFFFF; border: 1.5px solid #E4DCC8; border-radius: 14px; padding: 0 14px; height: 48px">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5A6352" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="6"></circle><path d="M20 20l-4.5-4.5"></path></svg>
+<span style="position: absolute; left: -9999px">Buscar producto</span>
+<input type="text" placeholder="Buscar producto…" style="border: 0; outline: none; font-family: inherit; font-size: 16px; flex-grow: 1; background: transparent; color: #1F2A1C">
+</label>
+<div style="display: flex; gap: 8px; overflow: hidden">
+<button type="button" style="flex-shrink: 0; border: 0; border-radius: 999px; padding: 0 16px; height: 44px; background: #1F2A1C; color: #FFFFFF; font-family: inherit; font-size: 14px; font-weight: 700">Todos</button>
+<button type="button" style="flex-shrink: 0; border: 0; border-radius: 999px; padding: 0 16px; height: 44px; background: #FFE6C7; color: #1F2A1C; font-family: inherit; font-size: 14px; font-weight: 700">Frutas</button>
+<button type="button" style="flex-shrink: 0; border: 0; border-radius: 999px; padding: 0 16px; height: 44px; background: #DDF1D3; color: #1F2A1C; font-family: inherit; font-size: 14px; font-weight: 700">Verduras</button>
+<button type="button" style="flex-shrink: 0; border: 0; border-radius: 999px; padding: 0 16px; height: 44px; background: #F4E6CF; color: #1F2A1C; font-family: inherit; font-size: 14px; font-weight: 700">Raíces</button>
+<button type="button" style="flex-shrink: 0; border: 0; border-radius: 999px; padding: 0 16px; height: 44px; background: #D5EFE6; color: #1F2A1C; font-family: inherit; font-size: 14px; font-weight: 700">Hierbas</button>
+</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+<sc-for list="{{products}}" as="p" hint-placeholder-count="6">
+<a href="MovilPeso.dc.html" style="background: {{p.bg}}; border-radius: 18px; padding: 14px; height: 138px; box-sizing: border-box; display: flex; flex-direction: column; gap: 6px; text-decoration: none; color: #1F2A1C; position: relative">
+<div style="width: 48px; height: 48px; border-radius: 999px; background: {{p.dot}}; box-shadow: inset -6px -6px 0 rgba(0,0,0,0.12)"></div>
+<div style="font-size: 16px; font-weight: 700">{{p.name}}</div>
+<div style="font-size: 17px; font-weight: 800">{{p.price}} <span style="font-size: 13px; font-weight: 600; color: #4A5443">/ {{p.unit}}</span></div>
+<sc-if value="{{p.inCart}}" hint-placeholder-val="{{false}}"><span style="position: absolute; top: 12px; right: 12px; background: #C2410C; color: #FFFFFF; font-size: 12px; font-weight: 800; padding: 4px 9px; border-radius: 999px">{{p.cartQty}}</span></sc-if>
+</a>
+</sc-for>
+</div>
+</div>
+<a href="#venta" style="margin: 10px 12px; height: 62px; border-radius: 18px; background: #C2410C; color: #FFFFFF; text-decoration: none; display: flex; align-items: center; padding: 0 18px; gap: 12px; flex-shrink: 0">
+<span style="background: #FFC83D; color: #1F2A1C; font-weight: 800; font-size: 14px; border-radius: 999px; padding: 4px 10px">4</span>
+<span style="font-size: 16px; font-weight: 700; flex-grow: 1">Ver venta</span>
+<span style="font-family: 'Bricolage Grotesque', Georgia, serif; font-size: 22px; font-weight: 800">$13.900</span>
+</a>
+<nav aria-label="Principal" style="height: 72px; flex-shrink: 0; background: #FFFFFF; border-top: 1px solid #E7E0D0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr))">
+<a href="MovilVenta.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-decoration: none; color: #B8560F; font-size: 12px; font-weight: 800"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 10h14l-1.5 9h-11z"></path><path d="M9 10l3-5 3 5"></path></svg>Vender</a>
+<a href="#cajas" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-decoration: none; color: #5A6352; font-size: 12px; font-weight: 600"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="11" rx="2"></rect><path d="M8 8V5h8v3"></path><path d="M4 13h16"></path></svg>Cajas</a>
+<a href="MovilGastos.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-decoration: none; color: #5A6352; font-size: 12px; font-weight: 600"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19V11"></path><path d="M12 19V5"></path><path d="M19 19v-6"></path></svg>Cuentas</a>
+<a href="MovilRecepcion.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-decoration: none; color: #5A6352; font-size: 12px; font-weight: 600"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8l8-4 8 4v8l-8 4-8-4z"></path><path d="M4 8l8 4 8-4"></path><path d="M12 12v8"></path></svg>Inventario</a>
+</nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      products: [
+        { name: 'Tomate chonto', price: '$4.800', unit: 'kg', bg: '#DDF1D3', dot: '#E0442B', inCart: true, cartQty: '1,25 kg' },
+        { name: 'Aguacate Hass', price: '$1.500', unit: 'und', bg: '#FFE6C7', dot: '#4F7A28', inCart: true, cartQty: '3' },
+        { name: 'Papa pastusa', price: '$2.600', unit: 'kg', bg: '#F4E6CF', dot: '#C9A26B' },
+        { name: 'Banano', price: '$3.000', unit: 'kg', bg: '#FFE6C7', dot: '#F5D33B', inCart: true, cartQty: '0,8 kg' },
+        { name: 'Cebolla cabezona', price: '$3.200', unit: 'kg', bg: '#DDF1D3', dot: '#B5577A' },
+        { name: 'Cilantro', price: '$1.000', unit: 'manojo', bg: '#D5EFE6', dot: '#3E9B3E', inCart: true, cartQty: '1' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

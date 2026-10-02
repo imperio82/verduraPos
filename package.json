@@ -1,0 +1,14 @@
+{
+  "name": "verdura-pos",
+  "private": true,
+  "version": "0.1.0",
+  "description": "POS para verdulería — monorepo: apps/web (Next.js) + apps/api (NestJS)",
+  "scripts": {
+    "dev": "pnpm --parallel --filter web --filter api dev",
+    "dev:web": "pnpm --filter web dev",
+    "dev:api": "pnpm --filter api dev",
+    "build": "pnpm --filter api build && pnpm --filter web build",
+    "seed": "pnpm --filter api seed"
+  },
+  "packageManager": "pnpm@10.13.1"
+}

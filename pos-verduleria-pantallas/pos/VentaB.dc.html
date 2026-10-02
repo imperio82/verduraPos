@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Vender — escritorio, opción B</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Figtree:wght@400;500;600;700&display=swap">
+<style>
+body{margin:0;font-family:Figtree,"Segoe UI",system-ui,sans-serif;background:#FBF7EE;color:#1F2A1C}
+a{color:#FFC83D}a:hover{color:#FFE08A}
+</style>
+</helmet>
+<div style="width: 1440px; height: 900px; display: flex; flex-direction: column; background: #FBF7EE; color: #1F2A1C; font-family: Figtree, 'Segoe UI', system-ui, sans-serif; overflow: hidden">
+
+<header style="height: 76px; flex-shrink: 0; background: #1F2A1C; display: flex; align-items: center; gap: 24px; padding: 0 28px; box-sizing: border-box">
+<div style="font-family: 'Bricolage Grotesque', Georgia, serif; font-size: 24px; font-weight: 800; color: #FFC83D">[TU VERDULERÍA]</div>
+<nav aria-label="Principal" style="display: flex; gap: 6px; flex-grow: 1">
+<a href="VentaB.dc.html" style="height: 44px; padding: 0 20px; border-radius: 999px; background: #FFC83D; color: #1F2A1C; font-weight: 700; font-size: 15px; text-decoration: none; display: flex; align-items: center">Vender</a>
+<a href="Cajas.dc.html" style="height: 44px; padding: 0 20px; border-radius: 999px; color: #E8E3D4; font-weight: 600; font-size: 15px; text-decoration: none; display: flex; align-items: center">Cajas</a>
+<a href="Admin.dc.html" style="height: 44px; padding: 0 20px; border-radius: 999px; color: #E8E3D4; font-weight: 600; font-size: 15px; text-decoration: none; display: flex; align-items: center">Contabilidad</a>
+<a href="Inventario.dc.html" style="height: 44px; padding: 0 20px; border-radius: 999px; color: #E8E3D4; font-weight: 600; font-size: 15px; text-decoration: none; display: flex; align-items: center">Inventario</a>
+</nav>
+<label style="display: flex; align-items: center; gap: 10px; background: #2C3A28; border-radius: 999px; padding: 0 18px; height: 44px; width: 300px; box-sizing: border-box">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E8E3D4" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="6"></circle><path d="M20 20l-4.5-4.5"></path></svg>
+<span style="position: absolute; left: -9999px">Buscar producto</span>
+<input type="text" placeholder="Buscar…" style="border: 0; outline: none; background: transparent; color: #FFFFFF; font-family: inherit; font-size: 15px; flex-grow: 1">
+</label>
+</header>
+
+<div style="flex-grow: 1; display: flex; min-height: 0">
+<main style="flex-grow: 1; padding: 24px 28px; box-sizing: border-box; display: flex; flex-direction: column; gap: 18px">
+<div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px">
+<sc-for list="{{cats}}" as="c" hint-placeholder-count="5">
+<button type="button" style="height: 64px; border-radius: 16px; border: {{c.border}}; background: {{c.bg}}; color: #1F2A1C; font-family: 'Bricolage Grotesque', Georgia, serif; font-size: 19px; font-weight: 800">{{c.label}}</button>
+</sc-for>
+</div>
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px">
+<sc-for list="{{products}}" as="p" hint-placeholder-count="12">
+<button type="button" style="height: 176px; border-radius: 22px; border: {{p.border}}; background: {{p.bg}}; padding: 16px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; text-align: left; font-family: inherit; color: #1F2A1C">
+<div style="display: flex; justify-content: space-between; align-items: flex-start; width: 100%">
+<div style="width: 56px; height: 56px; border-radius: 999px; background: {{p.dot}}; border: 4px solid #FFFFFF; box-sizing: border-box"></div>
+<span style="background: rgba(255,255,255,0.7); border-radius: 999px; padding: 4px 10px; font-size: 13px; font-weight: 700">{{p.unit}}</span>
+</div>
+<div>
+<div style="font-size: 18px; font-weight: 800">{{p.name}}</div>
+<div style="font-family: 'Bricolage Grotesque', Georgia, serif; font-size: 26px; font-weight: 800">{{p.price}}</div>
+</div>
+</button>
+</sc-for>
+</div>
+</main>
+
+<aside aria-label="Venta y balanza" style="width: 440px; flex-shrink: 0; background: #1F2A1C; color: #FFFFFF; padding: 24px; box-sizing: border-box; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; justify-content: space-between; align-items: baseline">
+<h2 style="margin: 0; font-family: 'Bricolage Grotesque', Georgia, serif; font-size: 22px; font-weight: 800">Venta #0142</h2>
+<span style="font-size: 14px; color: #C9D2BF">4 productos</span>
+</div>
+<div style="display: flex; flex-direction: column">
+<sc-for list="{{lines}}" as="l" hint-placeholder-count="4">
+<div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #34432F; font-size: 15px"><span>{{l.name}} <span style="color: #C9D2BF">· {{l.qty}}</span></span><span style="font-weight: 700">{{l.total}}</span></div>
+</sc-for>
+</div>
+<div style="background: #2C3A28; border-radius: 18px; padding: 16px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; justify-content: space-between; align-items: center">
+<span style="font-size: 15px; font-weight: 700">Banano · $3.000 / kg</span>
+<div role="group" aria-label="Unidad" style="display: flex; gap: 4px">
+<button type="button" style="height: 32px; padding: 0 10px; border: 0; border-radius: 8px; background: #FFC83D; color: #1F2A1C; font-family: inherit; font-weight: 700; font-size: 13px">kg</button>
+<button type="button" style="height: 32px; padding: 0 10px; border: 0; border-radius: 8px; background: #3A4A35; color: #FFFFFF; font-family: inherit; font-weight: 600; font-size: 13px">lb</button>
+<button type="button" style="height: 32px; padding: 0 10px; border: 0; border-radius: 8px; background: #3A4A35; color: #FFFFFF; font-family: inherit; font-weight: 600; font-size: 13px">und</button>
+</div>
+</div>
+<div style="display: flex; justify-content: space-between; align-items: baseline">
+<span style="font-family: 'Bricolage Grotesque', Georgia, serif; font-size: 44px; font-weight: 800; color: #FFC27A">0,800 kg</span>
+<span style="font-size: 22px; font-weight: 700">$2.400</span>
+</div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+<sc-for list="{{keys}}" as="k" hint-placeholder-count="12">
+<button type="button" style="height: 52px; border: 0; border-radius: 12px; background: #34432F; color: #FFFFFF; font-family: 'Bricolage Grotesque', Georgia, serif; font-size: 22px; font-weight: 700">{{k}}</button>
+</sc-for>
+</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: auto">
+<button type="button" style="height: 64px; border: 0; border-radius: 16px; background: #FFC83D; color: #1F2A1C; font-family: inherit; font-size: 18px; font-weight: 800">Agregar</button>
+<button type="button" style="height: 64px; border: 0; border-radius: 16px; background: #F28C28; color: #1F2A1C; font-family: 'Bricolage Grotesque', Georgia, serif; font-size: 20px; font-weight: 800">Cobrar $13.900</button>
+</div>
+</aside>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  renderVals() {
+    var V = '#9BD770', R = '#E9C08A', F = '#FFB547', H = '#7FD6BE';
+    var cats = [
+      { label: 'Todos', bg: '#FFFFFF', border: '3px solid #1F2A1C' },
+      { label: 'Frutas', bg: F, border: '0' },
+      { label: 'Verduras', bg: V, border: '0' },
+      { label: 'Raíces', bg: R, border: '0' },
+      { label: 'Hierbas', bg: H, border: '0' }
+    ];
+    var products = [
+      { name: 'Tomate chonto', price: '$4.800', unit: 'kg', bg: V, dot: '#E0442B' },
+      { name: 'Cebolla cabezona', price: '$3.200', unit: 'kg', bg: V, dot: '#B5577A' },
+      { name: 'Zanahoria', price: '$2.400', unit: 'kg', bg: V, dot: '#F07F1D' },
+      { name: 'Papa pastusa', price: '$2.600', unit: 'kg', bg: R, dot: '#C9A26B' },
+      { name: 'Yuca', price: '$2.200', unit: 'kg', bg: R, dot: '#F2E2BC' },
+      { name: 'Plátano hartón', price: '$1.200', unit: 'und', bg: R, dot: '#D8B21F' },
+      { name: 'Banano', price: '$3.000', unit: 'kg', bg: F, dot: '#F5D33B', selected: true },
+      { name: 'Aguacate Hass', price: '$1.500', unit: 'und', bg: F, dot: '#4F7A28' },
+      { name: 'Mango Tommy', price: '$5.500', unit: 'kg', bg: F, dot: '#F6A623' },
+      { name: 'Limón Tahití', price: '$4.000', unit: 'kg', bg: F, dot: '#8BC34A' },
+      { name: 'Fresa', price: '$9.000', unit: 'kg', bg: F, dot: '#D93A4A' },
+      { name: 'Cilantro', price: '$1.000', unit: 'manojo', bg: H, dot: '#3E9B3E' }
+    ].map(function (p) { return Object.assign({}, p, { border: p.selected ? '4px solid #1F2A1C' : '0' }); });
+    return {
+      cats: cats,
+      products: products,
+      lines: [
+        { name: 'Tomate chonto', qty: '1,250 kg', total: '$6.000' },
+        { name: 'Aguacate Hass', qty: '3 und', total: '$4.500' },
+        { name: 'Cilantro', qty: '1 manojo', total: '$1.000' },
+        { name: 'Banano', qty: '0,800 kg', total: '$2.400' }
+      ],
+      keys: ['1', '2', '3', '4', '5', '6', '7', '8', '9', ',', '0', '⌫']
+    };
+  }
+}
+</script>
+</body>
+</html>

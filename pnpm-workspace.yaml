@@ -1,0 +1,10 @@
+packages:
+  - apps/*
+
+ignoredBuiltDependencies:
+  - unrs-resolver
+
+onlyBuiltDependencies:
+  - sharp
+  - '@nestjs/core'
+  - mongodb-memory-server
