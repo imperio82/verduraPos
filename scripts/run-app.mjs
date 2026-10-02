@@ -5,7 +5,8 @@ import { spawnSync } from 'node:child_process';
 
 const script = process.argv[2];
 const app = process.env.APP;
-const apps = app ? [app] : script === 'build' ? ['api', 'web'] : [];
+const onRailway = Boolean(process.env.RAILWAY_ENVIRONMENT);
+const apps = app ? [app] : script === 'build' && !onRailway ? ['api', 'web'] : [];
 
 if (apps.length === 0) {
   console.error(`Define APP=api o APP=web para ejecutar "${script}".`);
