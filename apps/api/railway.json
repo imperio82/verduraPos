@@ -3,7 +3,7 @@
   "build": {
     "builder": "RAILPACK",
     "buildCommand": "pnpm --filter api build",
-    "watchPatterns": ["apps/api/**", "pnpm-lock.yaml"]
+    "watchPatterns": ["apps/api/**", "package.json", "pnpm-lock.yaml", "scripts/**"]
   },
   "deploy": {
     "startCommand": "pnpm --filter api start",
