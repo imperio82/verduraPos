@@ -4,8 +4,11 @@
 // se detiene todo para que la plataforma reinicie el servicio.
 import { spawn, spawnSync } from 'node:child_process';
 
+// Debe coincidir con el puerto por defecto de apps/web/next.config.ts.
+const API_INTERNAL_PORT = '3901';
+
 const script = process.argv[2];
-console.log(`[verdura-pos] run-app v2 (api + web en un servicio) → ${script}`);
+console.log(`[verdura-pos] run-app v3 (api + web en un servicio) → ${script}`);
 const apps = process.env.APP ? [process.env.APP] : ['api', 'web'];
 const production = { ...process.env, NODE_ENV: 'production' };
 
@@ -15,13 +18,18 @@ if (script === 'build') {
     if (status !== 0) process.exit(status ?? 1);
   }
 } else if (script === 'start') {
-  const apiPort = process.env.API_PORT ?? '4000';
-  const ports = { api: apiPort, web: process.env.PORT ?? '3000' };
+  const webPort = process.env.PORT ?? '3000';
+  const apiPort = process.env.API_PORT ?? API_INTERNAL_PORT;
+  if (apps.length > 1 && apiPort === webPort) {
+    console.error(`PORT (${webPort}) no puede ser igual al puerto interno de la API. Cambia o borra la variable PORT.`);
+    process.exit(1);
+  }
+  const ports = { api: apps.length > 1 ? apiPort : webPort, web: webPort };
   const children = apps.map((name) =>
     spawn('pnpm', ['--filter', name, 'start'], {
       stdio: 'inherit',
       shell: true,
-      env: { ...production, PORT: apps.length > 1 ? ports[name] : process.env.PORT ?? ports[name] },
+      env: { ...production, PORT: ports[name] },
     }),
   );
   const stopAll = (code) => {
