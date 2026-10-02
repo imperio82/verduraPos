@@ -5,6 +5,7 @@
 import { spawn, spawnSync } from 'node:child_process';
 
 const script = process.argv[2];
+console.log(`[verdura-pos] run-app v2 (api + web en un servicio) → ${script}`);
 const apps = process.env.APP ? [process.env.APP] : ['api', 'web'];
 const production = { ...process.env, NODE_ENV: 'production' };
 
