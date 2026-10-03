@@ -46,3 +46,11 @@ export class GetNextSaleNumberUseCase {
 		return this.saleRepository.getNextSaleNumber();
 	}
 }
+
+export class GetDailySalesUseCase {
+	constructor(private readonly repository: SaleRepository) {}
+
+	execute(day: string): Promise<SaleEntity[]> {
+		return this.repository.getSales(day);
+	}
+}

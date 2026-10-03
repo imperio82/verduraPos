@@ -11,3 +11,11 @@ export class RegisterExpenseUseCase {
 		return this.expenseRepository.createExpense({ ...expense, concepto: expense.concepto.trim() });
 	}
 }
+
+export class GetDailyExpensesUseCase {
+	constructor(private readonly repository: ExpenseRepository) {}
+
+	execute(day: string): Promise<ExpenseEntity[]> {
+		return this.repository.getExpenses(day);
+	}
+}

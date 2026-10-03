@@ -2,4 +2,5 @@ import type { CreateExpenseEntity, ExpenseEntity } from "../entities/expense.ent
 
 export interface ExpenseRepository {
 	createExpense(expense: CreateExpenseEntity): Promise<ExpenseEntity>;
+	getExpenses(day: string): Promise<ExpenseEntity[]>;
 }

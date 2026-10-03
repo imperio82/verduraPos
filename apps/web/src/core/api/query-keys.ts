@@ -11,6 +11,10 @@ export const queryKeys = {
 	cashSession: (id: string) => ["cash-session", id] as const,
 	cashSessionAll: ["cash-session"] as const,
 	nextSaleNumber: ["sales", "next-number"] as const,
+	dailySales: (day: string) => ["sales", "list", day] as const,
+	dailySalesAll: ["sales", "list"] as const,
+	dailyExpenses: (day: string) => ["expenses", "list", day] as const,
+	dailyExpensesAll: ["expenses", "list"] as const,
 	accounting: (params?: object) => ["accounting", params ?? {}] as const,
 	accountingAll: ["accounting"] as const,
 	savingsGoals: ["savings-goals"] as const,
@@ -23,4 +27,4 @@ export const queryKeys = {
 } as const;
 
 /** Todo lo que cambia cuando entra o sale dinero de una caja. */
-export const MONEY_KEYS = [queryKeys.cashSessionsAll, queryKeys.cashSessionAll, queryKeys.cashRegisters, queryKeys.accountingAll];
+export const MONEY_KEYS = [queryKeys.cashSessionsAll, queryKeys.cashSessionAll, queryKeys.cashRegisters, queryKeys.accountingAll, queryKeys.dailySalesAll, queryKeys.dailyExpensesAll];

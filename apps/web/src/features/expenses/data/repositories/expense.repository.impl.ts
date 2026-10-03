@@ -8,4 +8,8 @@ export class ExpenseRepositoryImpl implements ExpenseRepository {
 	createExpense(expense: CreateExpenseEntity): Promise<ExpenseEntity> {
 		return this.expenseDatasource.createExpense(expense);
 	}
+
+	getExpenses(day: string): Promise<ExpenseEntity[]> {
+		return this.expenseDatasource.getExpenses(day);
+	}
 }

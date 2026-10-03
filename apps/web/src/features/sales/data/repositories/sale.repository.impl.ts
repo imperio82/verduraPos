@@ -12,4 +12,8 @@ export class SaleRepositoryImpl implements SaleRepository {
 	getNextSaleNumber(): Promise<number> {
 		return this.saleDatasource.getNextSaleNumber();
 	}
+
+	getSales(day: string): Promise<SaleEntity[]> {
+		return this.saleDatasource.getSales(day);
+	}
 }

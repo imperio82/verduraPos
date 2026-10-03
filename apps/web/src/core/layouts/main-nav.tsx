@@ -1,6 +1,6 @@
 "use client";
 
-import { BarChart3Icon, BoxIcon, type LucideIcon, ShoppingBasketIcon, WalletIcon } from "lucide-react";
+import { BarChart3Icon, BoxIcon, type LucideIcon, ReceiptTextIcon, ShoppingBasketIcon, WalletIcon } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/core/lib/utils";
@@ -13,6 +13,7 @@ interface NavItem {
 
 export const NAV_ITEMS: NavItem[] = [
 	{ href: "/vender", label: "Vender", icon: ShoppingBasketIcon },
+	{ href: "/ventas", label: "Ventas", icon: ReceiptTextIcon },
 	{ href: "/cajas", label: "Cajas", icon: WalletIcon },
 	{ href: "/cuentas", label: "Cuentas", icon: BarChart3Icon },
 	{ href: "/inventario", label: "Inventario", icon: BoxIcon },
@@ -62,7 +63,7 @@ export function BottomNav() {
 	return (
 		<nav
 			aria-label="Principal"
-			className="fixed inset-x-0 bottom-0 z-40 grid grid-cols-4 border-t border-[#F0C58F] bg-nav pb-[env(safe-area-inset-bottom,0px)] md:hidden"
+			className="fixed inset-x-0 bottom-0 z-40 grid grid-cols-5 border-t border-[#F0C58F] bg-nav pb-[env(safe-area-inset-bottom,0px)] md:hidden"
 		>
 			{NAV_ITEMS.map(({ href, label, icon: Icon }) => (
 				<Link

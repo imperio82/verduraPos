@@ -9,6 +9,7 @@ import { cn } from "@/core/lib/utils";
 import { Badge } from "@/core/ui/badge";
 import { Button } from "@/core/ui/button";
 import { Card, CardDescription, CardHeader, CardTitle } from "@/core/ui/card";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/core/ui/dialog";
 import { Progress } from "@/core/ui/progress";
 import { Skeleton } from "@/core/ui/skeleton";
 import { formatDateTime, formatMoney, formatTime } from "@/core/utils/format";
@@ -44,7 +45,7 @@ export function CashSessionDetailPage({ sessionId }: { sessionId: string }) {
 	const { data: session, isLoading } = useCashSessionDetail(sessionId);
 	const { data: goals = [] } = useSavingsGoals();
 	const hasGoals = goals.some((g) => g.activa);
-	const [dialog, setDialog] = useState<"income" | "expense" | "savings" | null>(null);
+	const [dialog, setDialog] = useState<"income" | "expense" | "savings" | "close" | null>(null);
 
 	if (isLoading || !session) {
 		return (
@@ -89,6 +90,9 @@ export function CashSessionDetailPage({ sessionId }: { sessionId: string }) {
 							</Button>
 							<Button variant="secondary" onClick={() => setDialog("savings")} disabled={!hasGoals}>
 								Pasar a ahorro
+							</Button>
+							<Button variant="dark" onClick={() => setDialog("close")}>
+								Cerrar caja
 							</Button>
 						</div>
 					)}
@@ -172,10 +176,22 @@ export function CashSessionDetailPage({ sessionId }: { sessionId: string }) {
 				</div>
 			</section>
 
-			<aside aria-label="Cierre de caja" className="shrink-0 border-t border-[#E7E0D0] bg-card p-5 md:p-7 xl:w-[400px] xl:border-t-0 xl:border-l">
-				<h2 className="mb-4 font-display text-2xl font-extrabold">Cierre de caja</h2>
-				<CashClosingPanel session={session} />
-			</aside>
+			{/* Cerrada: el resumen del cierre queda a la vista. Abierta: el cierre se hace en el modal. */}
+			{!isOpen && (
+				<aside aria-label="Cierre de caja" className="shrink-0 border-t border-[#E7E0D0] bg-card p-5 md:p-7 xl:w-[400px] xl:border-t-0 xl:border-l">
+					<h2 className="mb-4 font-display text-2xl font-extrabold">Cierre de caja</h2>
+					<CashClosingPanel session={session} />
+				</aside>
+			)}
+
+			<Dialog open={dialog === "close" && isOpen} onOpenChange={closeDialog}>
+				<DialogContent className="max-h-[90dvh] overflow-y-auto">
+					<DialogHeader>
+						<DialogTitle>Cierre de caja</DialogTitle>
+					</DialogHeader>
+					<CashClosingPanel session={session} />
+				</DialogContent>
+			</Dialog>
 
 			<CashIncomeDialog sessionId={session.id} open={dialog === "income"} onOpenChange={closeDialog} />
 			<ExpenseDialog fixedSessionId={session.id} open={dialog === "expense"} onOpenChange={closeDialog} />
