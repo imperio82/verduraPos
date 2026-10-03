@@ -65,7 +65,7 @@ export function CashSessionDetailPage({ sessionId }: { sessionId: string }) {
 	const closeDialog = (open: boolean) => !open && setDialog(null);
 
 	return (
-		<div className="flex min-h-full flex-col xl:flex-row">
+		<div className="flex min-h-full flex-col pb-28 md:pb-0 xl:flex-row">
 			<section className="flex min-w-0 flex-1 flex-col gap-5 p-4 md:px-8 md:py-7">
 				<div className="flex flex-wrap items-center gap-3">
 					<Button asChild variant="outline" size="icon" aria-label="Volver a cajas">
