@@ -4,4 +4,5 @@ export interface SaleRepository {
 	createSale(sale: CreateSaleEntity): Promise<SaleEntity>;
 	getNextSaleNumber(): Promise<number>;
 	getSales(day: string): Promise<SaleEntity[]>;
+	getSessionSales(cashSessionId: string): Promise<SaleEntity[]>;
 }

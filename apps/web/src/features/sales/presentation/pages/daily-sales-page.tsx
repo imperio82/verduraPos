@@ -5,24 +5,15 @@ import { EmptyState } from "@/core/components/empty-state";
 import { PageHeader } from "@/core/components/page-header";
 import { StatCard } from "@/core/components/stat-card";
 import { cn } from "@/core/lib/utils";
-import { Badge } from "@/core/ui/badge";
 import { Card, CardDescription, CardHeader, CardTitle } from "@/core/ui/card";
 import { Input } from "@/core/ui/input";
 import { Skeleton } from "@/core/ui/skeleton";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/core/ui/table";
-import { formatMoney, formatQuantity, formatSignedMoney, formatTime, toIsoDay } from "@/core/utils/format";
-import { PAYMENT_METHOD_LABELS } from "@/features/cash-registers/domain/entities/cash-register.entity";
+import { formatMoney, formatSignedMoney, formatTime, toIsoDay } from "@/core/utils/format";
 import { EXPENSE_CATEGORY_META, EXPENSE_PAYMENT_LABELS } from "@/features/expenses/domain/entities/expense.entity";
 import { useDailyExpenses } from "@/features/expenses/presentation/hooks/use-daily-expenses";
-import type { SaleEntity } from "../../domain/entities/sale.entity";
+import { SalesTable } from "../components/sales-table";
 import { useDailySales } from "../hooks/use-daily-sales";
-
-const saleNumber = (numero: number) => `#${String(numero).padStart(4, "0")}`;
-
-const saleDetail = (sale: SaleEntity): string =>
-	sale.tipo === "total" || sale.items.length === 0
-		? (sale.nota ?? "Venta por total")
-		: sale.items.map((item) => `${item.nombre} ${formatQuantity(item.cantidad, item.unidad)}`).join(", ");
 
 /** Ventas y egresos de un día, con sus totales. */
 export function DailySalesPage() {
@@ -71,37 +62,7 @@ export function DailySalesPage() {
 				) : saleList.length === 0 ? (
 					<EmptyState title="No hay ventas este día" />
 				) : (
-					<Table>
-						<TableHeader>
-							<TableRow>
-								<TableHead>Venta</TableHead>
-								<TableHead>Hora</TableHead>
-								<TableHead>Detalle</TableHead>
-								<TableHead>Caja</TableHead>
-								<TableHead>Método</TableHead>
-								<TableHead className="text-right">Total</TableHead>
-							</TableRow>
-						</TableHeader>
-						<TableBody>
-							{saleList.map((sale) => (
-								<TableRow key={sale.id}>
-									<TableCell className="tabular font-bold">{saleNumber(sale.numero)}</TableCell>
-									<TableCell className="tabular whitespace-nowrap">{formatTime(sale.createdAt)}</TableCell>
-									<TableCell className="max-w-[320px] truncate" title={saleDetail(sale)}>
-										{saleDetail(sale)}
-									</TableCell>
-									<TableCell>
-										<div className="font-semibold">{sale.cajaNombre}</div>
-										<div className="text-sm text-muted-foreground">{sale.cajero}</div>
-									</TableCell>
-									<TableCell>
-										<Badge variant="outline">{PAYMENT_METHOD_LABELS[sale.metodoPago]}</Badge>
-									</TableCell>
-									<TableCell className="tabular text-right font-extrabold">{formatMoney(sale.total)}</TableCell>
-								</TableRow>
-							))}
-						</TableBody>
-					</Table>
+					<SalesTable sales={saleList} showRegister />
 				)}
 			</Card>
 

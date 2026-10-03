@@ -14,6 +14,8 @@ import { Progress } from "@/core/ui/progress";
 import { Skeleton } from "@/core/ui/skeleton";
 import { formatDateTime, formatMoney, formatTime } from "@/core/utils/format";
 import { ExpenseDialog } from "@/features/expenses/presentation/components/expense-dialog";
+import { SalesTable } from "@/features/sales/presentation/components/sales-table";
+import { useSessionSales } from "@/features/sales/presentation/hooks/use-daily-sales";
 import { SavingsDepositDialog } from "@/features/savings/presentation/components/savings-deposit-dialog";
 import { useSavingsGoals } from "@/features/savings/presentation/hooks/use-savings";
 import {
@@ -43,6 +45,7 @@ const METHOD_COLORS: Record<PaymentMethod, string> = {
 
 export function CashSessionDetailPage({ sessionId }: { sessionId: string }) {
 	const { data: session, isLoading } = useCashSessionDetail(sessionId);
+	const { data: sales = [], isLoading: salesLoading } = useSessionSales(sessionId);
 	const { data: goals = [] } = useSavingsGoals();
 	const hasGoals = goals.some((g) => g.activa);
 	const [dialog, setDialog] = useState<"income" | "expense" | "savings" | "close" | null>(null);
@@ -174,6 +177,24 @@ export function CashSessionDetailPage({ sessionId }: { sessionId: string }) {
 						})}
 					</Card>
 				</div>
+
+				<Card className="gap-0 overflow-hidden p-0">
+					<CardHeader className="p-4 md:p-5">
+						<div>
+							<CardTitle>Ventas realizadas</CardTitle>
+							<CardDescription>
+								{sales.length} ventas · {formatMoney(sales.reduce((sum, s) => sum + s.total, 0))}
+							</CardDescription>
+						</div>
+					</CardHeader>
+					{salesLoading ? (
+						<Skeleton className="m-4 h-32" />
+					) : sales.length === 0 ? (
+						<EmptyState title="Todavía no hay ventas en esta caja" />
+					) : (
+						<SalesTable sales={sales} />
+					)}
+				</Card>
 			</section>
 
 			{/* Cerrada: el resumen del cierre queda a la vista. Abierta: el cierre se hace en el modal. */}

@@ -16,4 +16,8 @@ export class SaleRepositoryImpl implements SaleRepository {
 	getSales(day: string): Promise<SaleEntity[]> {
 		return this.saleDatasource.getSales(day);
 	}
+
+	getSessionSales(cashSessionId: string): Promise<SaleEntity[]> {
+		return this.saleDatasource.getSessionSales(cashSessionId);
+	}
 }

@@ -54,3 +54,11 @@ export class GetDailySalesUseCase {
 		return this.repository.getSales(day);
 	}
 }
+
+export class GetSessionSalesUseCase {
+	constructor(private readonly repository: SaleRepository) {}
+
+	execute(cashSessionId: string): Promise<SaleEntity[]> {
+		return this.repository.getSessionSales(cashSessionId);
+	}
+}

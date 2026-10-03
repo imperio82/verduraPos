@@ -13,6 +13,7 @@ export const queryKeys = {
 	nextSaleNumber: ["sales", "next-number"] as const,
 	dailySales: (day: string) => ["sales", "list", day] as const,
 	dailySalesAll: ["sales", "list"] as const,
+	sessionSales: (cashSessionId: string) => ["sales", "list", "session", cashSessionId] as const,
 	dailyExpenses: (day: string) => ["expenses", "list", day] as const,
 	dailyExpensesAll: ["expenses", "list"] as const,
 	accounting: (params?: object) => ["accounting", params ?? {}] as const,

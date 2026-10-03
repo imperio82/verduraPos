@@ -17,6 +17,11 @@ export class SaleDatasource {
 		return APIClient.get<SaleEntity[]>({ url: urlsSales.getSales, params: { from: day, to: day } });
 	}
 
+	/** Todas las ventas de una caja (turno), sin importar el día. */
+	getSessionSales(cashSessionId: string): Promise<SaleEntity[]> {
+		return APIClient.get<SaleEntity[]>({ url: urlsSales.getSales, params: { cashSessionId } });
+	}
+
 	async getNextSaleNumber(): Promise<number> {
 		const { numero } = await APIClient.get<{ numero: number }>({ url: urlsSales.nextNumber });
 		return numero;

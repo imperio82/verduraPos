@@ -4,4 +4,5 @@ export const TOKENS_SALES = {
 	CheckoutSaleUseCase: Symbol("CheckoutSaleUseCase"),
 	GetNextSaleNumberUseCase: Symbol("GetNextSaleNumberUseCase"),
 	GetDailySalesUseCase: Symbol("GetDailySalesUseCase"),
+	GetSessionSalesUseCase: Symbol("GetSessionSalesUseCase"),
 } as const;
